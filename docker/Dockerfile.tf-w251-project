@@ -1,10 +1,8 @@
 #FROM tensorflow/tensorflow:latest-gpu
 FROM tensorflow/tensorflow:2.2.0-gpu
 
-COPY libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb /project/libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb
-COPY AudioAugmentation.ipynb /project/AudioAugmentation.ipynb
-
-RUN dpkg -i /project/libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb
+#COPY libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb /project/libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb
+#RUN dpkg -i /project/libcudnn7_7.6.5.32-1+cuda10.2_amd64.deb
 
 RUN apt-get update
 RUN apt-get install -y libsndfile1
@@ -29,6 +27,7 @@ RUN mkdir data
 RUN mkdir w251
 RUN mkdir models
 COPY Demo_v1.ipynb /project
+COPY AudioAugmentation.ipynb /project/AudioAugmentation.ipynb
 
 EXPOSE 8888
 CMD jupyter notebook  --no-browser --ip=0.0.0.0 --allow-root
