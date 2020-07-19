@@ -3,7 +3,7 @@
 To start a P100 VM - Pls change location, host name, domain, ssh key
 
 ```
-ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=dima.com --image=2263543 --billing=hourly  --network 1000 --key=1418191 --flavor AC1_8X60X100 --san
+ibmcloud sl vs create --datacenter=lon06 --hostname=p100 --domain=ucb.com --image=2263543 --billing=hourly  --network 1000 --key=<KeyID> --flavor AC1_8X60X100 --san
 ```
 
 SSH into the P100 VM, then setup s3fs to mount IBM cloud storage.
@@ -19,8 +19,12 @@ cd s3fs-fuse
 make
 sudo make install
 
+```
+Go back to root directory
+
+```
 echo "bf87c595976145c386349f53e2517493:a61ba4b36c06b17ce4a5cf1cb087821b79fb293c42b1e617" > $HOME/.cos_creds
-chmod 600
+chmod 600 .cos_creds
 ```
 
 Clone this repo and mount to my IBM Object storage
@@ -36,6 +40,9 @@ sudo s3fs audiodata /root/w251-project/data -o passwd_file=$HOME/.cos_creds -o s
 build docker container
 
 ```
+# copy the ipynb files to the docker folder for building the container
+cp *.ipynb ~/w251-project/docker
+cd docker
 docker build -t tf/w251-project -f Dockerfile.tf-w251-project .
 ```
 
