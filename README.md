@@ -30,7 +30,7 @@ chmod 600 .cos_creds
 Clone this repo and mount to my IBM Object storage
 
 ```
-git clone https://github.com/hoichunlaw/w251-project.git
+git clone https://github.com/abhisha1991/w251-project.git
 cd w251-project
 mkdir data
 
